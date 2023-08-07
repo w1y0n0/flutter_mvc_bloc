@@ -26,7 +26,7 @@ class CounterView extends StatefulWidget {
           child: Column(
             children: [
               Text(
-                "${controller.counter}",
+                "${controller.state.counter}",
                 style: const TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
