@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mvc_bloc/counter_view.dart';
+import 'package:flutter_mvc_bloc/counter/counter_view.dart';
 
 /*
 BluePrint Rumah

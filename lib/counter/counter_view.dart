@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'counter_controller.dart';
+
 class CounterView extends StatefulWidget {
   const CounterView({Key? key}) : super(key: key);
 
@@ -44,27 +46,5 @@ class CounterView extends StatefulWidget {
       ),
     );
     ;
-  }
-}
-
-class CounterController extends State<CounterView> {
-  // State
-  int counter = 0;
-
-  // Logic
-  increment() {
-    counter++;
-    setState(() {});
-  }
-
-  decrement() {
-    counter--;
-    setState(() {});
-  }
-
-  // View
-  @override
-  Widget build(BuildContext context) {
-    return widget.build(context, this);
   }
 }
