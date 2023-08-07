@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mvc_bloc/counter/counter_state.dart';
 
@@ -18,6 +19,23 @@ class CounterController extends State<CounterView> {
   decrement() {
     state = CounterState(
       counter: state.counter - 1,
+    );
+    setState(() {});
+  }
+
+  getUsers() async {
+    var response = await Dio().get(
+      "https://reqres.in/api/users",
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+        },
+      ),
+    );
+    Map obj = response.data;
+    state = CounterState(
+      counter: state.counter,
+      users: obj["data"],
     );
     setState(() {});
   }

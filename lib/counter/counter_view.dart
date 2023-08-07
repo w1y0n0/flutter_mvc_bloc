@@ -20,28 +20,60 @@ class CounterView extends StatefulWidget {
         title: const Text("Dashboard"),
         actions: const [],
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            children: [
-              Text(
-                "${controller.state.counter}",
-                style: const TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                ),
+      body: Container(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            Text(
+              "COUNTER: ${controller.state.counter}",
+              style: const TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
               ),
-              ElevatedButton(
-                onPressed: () => controller.increment(),
-                child: const Text("Increment"),
+            ),
+            Text(
+              "USERS: ${controller.state.users.length}",
+              style: const TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
               ),
-              ElevatedButton(
-                onPressed: () => controller.decrement(),
-                child: const Text("Decrement"),
+            ),
+            ElevatedButton(
+              onPressed: () => controller.increment(),
+              child: const Text("Increment"),
+            ),
+            ElevatedButton(
+              onPressed: () => controller.decrement(),
+              child: const Text("Decrement"),
+            ),
+            ElevatedButton(
+              onPressed: () => controller.getUsers(),
+              child: const Text("Get Users"),
+            ),
+            const Divider(),
+            Expanded(
+              child: ListView.builder(
+                itemCount: controller.state.users.length,
+                physics: const ScrollPhysics(),
+                itemBuilder: (BuildContext context, int index) {
+                  var item = controller.state.users[index];
+
+                  return Card(
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.grey[200],
+                        backgroundImage: NetworkImage(
+                          item["avatar"],
+                        ),
+                      ),
+                      title: Text(item["first_name"]),
+                      subtitle: Text(item["email"]),
+                    ),
+                  );
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
