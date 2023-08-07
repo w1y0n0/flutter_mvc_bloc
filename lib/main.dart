@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mvc_bloc/counter/counter_view.dart';
+import 'package:flutter_mvc_bloc/home/home_view.dart';
 
 /*
 BluePrint Rumah
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const CounterView(),
+      home: const HomeView(),
     );
   }
 }
