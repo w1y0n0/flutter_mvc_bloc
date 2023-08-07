@@ -6,10 +6,48 @@ class CounterView extends StatefulWidget {
   const CounterView({Key? key}) : super(key: key);
 
   @override
-  State<CounterView> createState() => _CounterViewState();
+  State<CounterView> createState() => CounterController();
+
+  @override
+  Widget build(
+    BuildContext context,
+    CounterController controller,
+  ) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Dashboard"),
+        actions: const [],
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            children: [
+              Text(
+                "${controller.counter}",
+                style: const TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () => controller.increment(),
+                child: const Text("Increment"),
+              ),
+              ElevatedButton(
+                onPressed: () => controller.decrement(),
+                child: const Text("Decrement"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    ;
+  }
 }
 
-class _CounterViewState extends State<CounterView> {
+class CounterController extends State<CounterView> {
   // State
   int counter = 0;
 
@@ -27,35 +65,6 @@ class _CounterViewState extends State<CounterView> {
   // View
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Dashboard"),
-        actions: const [],
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            children: [
-              Text(
-                "$counter",
-                style: const TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () => increment(),
-                child: const Text("Increment"),
-              ),
-              ElevatedButton(
-                onPressed: () => decrement(),
-                child: const Text("Decrement"),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+    return widget.build(context, this);
   }
 }
